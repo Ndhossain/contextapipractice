@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import React from 'react';
 import ClickCounter from './ClickCounter';
 import ThemeContext from './context/themeContext';
@@ -6,15 +7,24 @@ import Section from './Section';
 
 export default class App extends React.Component {
     state = {
+        // eslint-disable-next-line react/no-unused-state
         theme: 'Dark',
+        // eslint-disable-next-line react/no-unused-state
+        switchTheme: () => {
+            this.setState(({ theme }) => {
+                if (theme === 'Dark') {
+                    return {
+                        theme: 'light',
+                    };
+                }
+                return {
+                    theme: 'Dark',
+                };
+            });
+        },
     };
 
     render() {
-        const { theme } = this.state;
-        // eslint-disable-next-line react/jsx-no-constructed-context-values
-        const myTheme = {
-            theme,
-        };
         return (
             <div className="App">
                 <div>
@@ -26,7 +36,7 @@ export default class App extends React.Component {
                 </div>
                 <br />
                 <div>
-                    <ThemeContext.Provider value={myTheme}>
+                    <ThemeContext.Provider value={this.state}>
                         <Section />
                     </ThemeContext.Provider>
                 </div>

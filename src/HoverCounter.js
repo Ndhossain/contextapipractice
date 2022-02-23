@@ -1,4 +1,4 @@
-export default function HoverCounter({ count, handleChange, theme }) {
+export default function HoverCounter({ count, handleChange, theme, switchTheme }) {
     const style =
         theme === 'Dark'
             ? {
@@ -12,6 +12,9 @@ export default function HoverCounter({ count, handleChange, theme }) {
             <h1 style={style} onMouseOver={handleChange}>
                 Hovered {count} times
             </h1>
+            <button type="button" onClick={switchTheme}>
+                click me
+            </button>
         </div>
     );
 }
